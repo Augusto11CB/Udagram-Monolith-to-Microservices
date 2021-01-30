@@ -1,0 +1,42 @@
+version: "3"
+services:
+  udagram-reverseproxy:
+      image: augustocalado11/udagram-reverseproxy
+      ports:
+          - 8080:8080
+      restart: always
+      depends_on:
+        - udagram-restapi-users
+        - udagram-restapi-feeds     
+  udagram-restapi-users:
+    image: augustocalado11/udagram-restapi-users
+    volumes:
+      - $HOME/.aws:/root/.aws
+    environment:
+      POSTGRES_USERNAME : $POSTGRESS_USERNAME
+      POSTGRES_PASSWORD: $POSTGRESS_PASSWORD 
+      POSTGRES_DB: $POSTGRESS_DATABASE 
+      POSTGRES_HOST: $POSTGRESS_HOST 
+      AWS_REGION: $AWS_REGION 
+      AWS_PROFILE: $AWS_PROFILE 
+      AWS_MEDIA_BUCKET: $AWS_BUCKET
+      JWT_SECRET: $JWT_SECRET
+      URL: $URL
+  udagram-restapi-feeds:
+    image: augustocalado11/udagram-restapi-feeds
+    volumes:
+      - $HOME/.aws:/root/.aws
+    environment:
+      POSTGRES_USERNAME: $POSTGRESS_USERNAME
+      POSTGRES_PASSWORD: $POSTGRESS_PASSWORD 
+      POSTGRES_DB: $POSTGRESS_DATABASE 
+      POSTGRES_HOST: $POSTGRESS_HOST 
+      AWS_REGION: $AWS_REGION 
+      AWS_PROFILE: $AWS_PROFILE 
+      AWS_MEDIA_BUCKET: $AWS_BUCKET
+      JWT_SECRET: $JWT_SECRET
+      URL: $URL
+  udagram-frontend:
+    image: augustocalado11/udagram-frontend
+    ports:
+      - "8100:80"

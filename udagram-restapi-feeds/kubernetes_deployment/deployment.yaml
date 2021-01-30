@@ -1,24 +1,31 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: feeds-app
+  name: udagram-restapi-feeds
   labels:
-    app: feeds-app
+    app: udagram-restapi-feeds
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: feeds-app
+      app: udagram-restapi-feeds
   template:
     metadata:
       labels:
-        app: feeds-app
+        app: udagram-restapi-feeds
     spec:
       containers:
       - name: udagram-restapi-feeds
-        image: augustocalado11/udagram-udagram-restapi-feeds
+        image: augustocalado11/udagram-restapi-feeds
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m"
         ports:
-        - containerPort: 80
+        - containerPort: 80        
         env:
         - name: POSTGRESS_USERNAME
           value: "????????"

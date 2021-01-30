@@ -1,0 +1,21 @@
+version: '3'
+services:
+  udagram-restapi-users:
+    build:
+      context: ../../udagram-restapi-users
+      dockerfile: Dockerfile
+    image: augustocalado11/udagram-restapi-users
+  udagram-restapi-feeds:
+    build:
+      context: ../../udagram-restapi-feeds
+      dockerfile: Dockerfile
+    image: augustocalado11/udagram-restapi-feeds
+  reverseproxy:
+    build:
+      context: ../../udagram-reverseproxy
+      dockerfile: Dockerfile
+    image: augustocalado11/udagram-reverseproxy
+  udagram-frontend:
+    build:
+      context: ../../udagram-frontend  
+    image: augustocalado11/udagram-frontend
