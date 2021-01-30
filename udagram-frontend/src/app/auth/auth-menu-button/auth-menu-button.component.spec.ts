@@ -17,6 +17,7 @@ describe('AuthMenuButtonPage', () => {
         return modalSpy;
     });
 
+
     TestBed.configureTestingModule({
       providers: [
         {
