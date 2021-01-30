@@ -1,7 +1,5 @@
 # Udagram REST API
 
-[![Build Status](https://travis-ci.org/ AugustoCalado/udagram-restapi-users.svg?branch=master)](https://travis-ci.org/ AugustoCalado/udagram-restapi-users)
-
 Udagram is a simple cloud application developed alongside the Udacity Cloud Engineering Nanodegree. It allows users to register and log into a web client, post photos to the feed, and process photos using an image filtering microservice.
 
 The project is split into three parts:
@@ -39,22 +37,3 @@ npm run dev
 
 Developer mode runs off the TypeScript source. Any saves will reset the server and run the latest version of the codebase. 
 
-
-## Docker
-
-`docker build -t udagram-restapi-users .`
-`docker tag udagram-restapi-users adiazarroyo/udagram-restapi-users`
-
-## Kubernetes
-`aws eks update-kubeconfig --region eu-west-3 --name udacity_cluster`
-
-kubectl apply -f deployment.yaml --validate=false
-kubectl apply -f service.yaml
-kubectl exec -it feeds-app-77947dcfc-w8fms bash
-
-kubectl delete deployment,services -l app=feeds-app
-kubectl autoscale deployment <NAME> --cpu-percent=<CPU_PERCENTAGE>                --min=<MIN_REPLICAS>
---max=<MAX_REPLICAS>
-
-
-kubectl autoscale deployment feeds-app --cpu-percent=80 --min=1 --max=5

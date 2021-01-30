@@ -12,6 +12,7 @@ log.txt
 .vscode/
 npm-debug.log*
 
+.env
 .idea/
 .ionic/
 .sourcemaps/
@@ -40,8 +41,3 @@ venv/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
-
-.history
-
-
-
