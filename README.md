@@ -1,10 +1,13 @@
 # Udagram Image Filtering Application
 
-Udagram is a simple cloud application developed alongside the Udacity Cloud Engineering Nanodegree. It allows users to register and log into a web client, post photos to the feed, and process photos using an image filtering microservice.
+Udagram is a simple cloud application developed. It allows users to register and log into a web client, post photos to the feed, and process photos using an image filtering microservice.
 
 The project is split into two parts:
 1. Frontend - Angular web application built with Ionic Framework
-2. Backend RESTful API - Node-Express application
+2. Backend User RESTful API - Node-Express application
+3. Backend Feed RESTful API - Node-Express application
+
+![](./resources/udagram-new-architecture.png)
 
 ## Getting Started
 > _tip_: it's recommended that you start with getting the backend API running since the frontend web application depends on the API.
@@ -26,7 +29,7 @@ Create a PostgreSQL database either locally or on AWS RDS. Set the config values
 ### S3
 Create an AWS S3 bucket. Set the config values for environment variables prefixed with `AWS_` in `set_env.sh`.
 
-### Backend API
+### Backend API - Procedure to run Both Backend Services
 * To download all the package dependencies, run the command from the directory `udagram-api/`:
     ```bash
     npm install .
@@ -57,18 +60,9 @@ Create an AWS S3 bucket. Set the config values for environment variables prefixe
 * You can visit `http://localhost:8100` in your web browser to verify that the application is running. You should see a web interface.
 
 ## Tips
-1. Take a look at `udagram-api` -- does it look like we can divide it into two modules to be deployed as separate microservices?
-2. The `.dockerignore` file is included for your convenience to not copy `node_modules`. Copying this over into a Docker container might cause issues if your local environment is a different operating system than the Docker image (ex. Windows or MacOS vs. Linux).
-3. It's useful to "lint" your code so that changes in the codebase adhere to a coding standard. This helps alleviate issues when developers use different styles of coding. `eslint` has been set up for TypeScript in the codebase for you. To lint your code, run the following:
-    ```bash
-    npx eslint --ext .js,.ts src/
-    ```
-    To have your code fixed automatically, run
-    ```bash
-    npx eslint --ext .js,.ts src/ --fix
-    ```
-4. Over time, our code will become outdated and inevitably run into security vulnerabilities. To address them, you can run:
+1. The `.dockerignore` file is included for your convenience to not copy `node_modules`. Copying this over into a Docker container might cause issues if your local environment is a different operating system than the Docker image (ex. Windows or MacOS vs. Linux).
+2. Over time, our code will become outdated and inevitably run into security vulnerabilities. To address them, you can run:
     ```bash
     npm audit fix
     ```
-5. In `set_env.sh`, environment variables are set with `export $VAR=value`. Setting it this way is not permanent; every time you open a new terminal, you will have to run `set_env.sh` to reconfigure your environment variables. To verify if your environment variable is set, you can check the variable with a command like `echo $POSTGRES_USERNAME`.
+3. In `set_env.sh`, environment variables are set with `export $VAR=value`. Setting it this way is not permanent; every time you open a new terminal, you will have to run `set_env.sh` to reconfigure your environment variables. To verify if your environment variable is set, you can check the variable with a command like `echo $POSTGRES_USERNAME`.
