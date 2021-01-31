@@ -3,20 +3,21 @@ kind: Deployment
 metadata:
   name: udagram-frontend
   labels:
-    app: udagram-frontend
+    service: udagram-frontend
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: udagram-frontend
+      service: udagram-frontend
   template:
     metadata:
       labels:
-        app: udagram-frontend
+        service: udagram-frontend
     spec:
       containers:
       - name: udagram-frontend
         image: augustocalado11/udagram-frontend:latest
+        imagePullPolicy: Always
         ports:
         - containerPort: 80
         resources:

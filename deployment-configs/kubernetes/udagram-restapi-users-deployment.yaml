@@ -3,20 +3,21 @@ kind: Deployment
 metadata:
   name: udagram-restapi-users
   labels:
-    app: udagram-restapi-users
+    service: udagram-restapi-users
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: udagram-restapi-users
+      service: udagram-restapi-users
   template:
     metadata:
       labels:
-        app: udagram-restapi-users
+        service: udagram-restapi-users
     spec:
       containers:
       - name: udagram-restapi-users
         image: augustocalado11/udagram-restapi-users:latest
+        imagePullPolicy: Always  
         resources:
           requests:
             memory: "64Mi"
@@ -70,3 +71,4 @@ spec:
             configMapKeyRef:
               name: env-config
               key: POSTGRESS_USERNAME
+      restartPolicy: Always

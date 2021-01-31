@@ -3,20 +3,21 @@ kind: Deployment
 metadata:
   name: udagram-restapi-feeds
   labels:
-    app: udagram-restapi-feeds
+    service: udagram-restapi-feeds
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: udagram-restapi-feeds
+      service: udagram-restapi-feeds
   template:
     metadata:
       labels:
-        app: udagram-restapi-feeds
+        service: udagram-restapi-feeds
     spec:
       containers:
       - name: udagram-restapi-feeds
         image: augustocalado11/udagram-restapi-feeds:latest
+        imagePullPolicy: Always
         resources:
           requests:
             memory: "64Mi"
@@ -70,3 +71,4 @@ spec:
             configMapKeyRef:
               name: env-config
               key: POSTGRESS_USERNAME
+      restartPolicy: Always

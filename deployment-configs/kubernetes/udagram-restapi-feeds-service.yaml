@@ -3,11 +3,11 @@ kind: Service
 metadata:
   name: udagram-restapi-feeds
   labels:
-    run: udagram-restapi-feeds
+    service: udagram-restapi-feeds
 spec:
   ports:
   - name: "8080"
     port: 8080
     targetPort: 8080
   selector:
-    run: udagram-restapi-feeds
+    service: udagram-restapi-feeds
