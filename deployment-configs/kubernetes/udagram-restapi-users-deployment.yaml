@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udagram-restapi-users
+  labels:
+    app: udagram-restapi-users
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: udagram-restapi-users
+  template:
+    metadata:
+      labels:
+        app: udagram-restapi-users
+    spec:
+      containers:
+      - name: udagram-restapi-users
+        image: augustocalado11/udagram-restapi-users:latest
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "1024Mi"
+            cpu: "500m" 
+        env:
+        - name: URL
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: URL
+        - name: AWS_MEDIA_BUCKET
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: AWS_MEDIA_BUCKET
+        - name: AWS_PROFILE
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: AWS_PROFILE
+        - name: AWS_REGION
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: AWS_REGION
+        - name: JWT_SECRET
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: JWT_SECRET
+        - name: POSTGRESS_DATABASE
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRESS_DATABASE
+        - name: POSTGRESS_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRESS_HOST
+        - name: POSTGRESS_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRESS_PASSWORD
+        - name: POSTGRESS_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: env-config
+              key: POSTGRESS_USERNAME
